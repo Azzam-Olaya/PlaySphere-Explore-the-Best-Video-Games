@@ -1,6 +1,6 @@
 // URL API
 const API_URL = "https://debuggers-games-api.duckdns.org/api/games";
-
+let x = 10;
 // DOM
 const gameCards = document.getElementById("gameCards");
 const loader = document.getElementById("loader");
