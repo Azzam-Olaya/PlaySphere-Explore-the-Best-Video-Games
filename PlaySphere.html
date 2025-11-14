@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PlaySphere - Discover and explore a vast collection of video games. Search, filter and save your favorite games.">
+    <title>PlaySphere - Explore the Best Video Games</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.cdnfonts.com/css/drunken-hour" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body class="bg-[#2b1c59] min-h-screen flex flex-col text-white">
+
+    <!-- HEADER -->
+    <header class="w-full">
+        <nav class="flex flex-col md:flex-row items-center justify-between bg-[#1b1440] px-4 md:px-8 py-4 shadow-md w-full gap-4">
+            <button id="logoBtn" class="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition">
+                <img src="image/logo.png" alt="PlaySphere Logo" class="w-32 md:w-40 h-auto object-contain">
+            </button>
+            <!-- recherche -->
+            <div class="flex items-center bg-[#9E1999] rounded-full px-4 py-1.5 w-full md:w-72">
+                <input id="searchInput" type="text" placeholder="Search..."
+                    class="bg-transparent text-sm outline-none flex-1 text-gray-200 placeholder-gray-400">
+                <span class="material-icons text-gray-200 text-lg">search</span>
+            </div>
+            <!-- Boutons droite -->
+            <div class="flex items-center space-x-4">
+                <button id="favoriteBtn" class="hover:text-purple-400 transition">
+                    <span class="material-icons text-3xl">favorite</span>
+                </button>
+                <button id="themeToggle" class="hover:text-purple-400 transition">
+                    <span id="darkIcon" class="material-icons text-3xl">dark_mode</span>
+                    <span id="lightIcon" class="material-icons text-3xl hidden">light_mode</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
