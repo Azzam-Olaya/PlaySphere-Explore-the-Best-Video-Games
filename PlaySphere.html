@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="PlaySphere - Discover and explore a vast collection of video games. Search, filter and save your favorite games.">
+    <title>PlaySphere - Explore the Best Video Games</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.cdnfonts.com/css/drunken-hour" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body class="bg-[#2b1c59] min-h-screen flex flex-col text-white">
+
+    <!-- HEADER -->
+    <header class="w-full">
+        <nav
+            class="flex flex-col md:flex-row items-center justify-between bg-[#1b1440] px-4 md:px-8 py-4 shadow-md w-full gap-4">
+            <button id="logoBtn" class="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition">
+                <img src="image/logo.png" alt="PlaySphere Logo" class="w-32 md:w-40 h-auto object-contain">
+            </button>
+            <!-- recherche -->
+            <div class="flex items-center bg-[#9E1999] rounded-full px-4 py-1.5 w-full md:w-72">
+                <input id="searchInput" type="text" placeholder="Search..."
+                    class="bg-transparent text-sm outline-none flex-1 text-gray-200 placeholder-gray-400">
+                <span class="material-icons text-gray-200 text-lg">search</span>
+            </div>
+            <!-- Boutons droite -->
+            <div class="flex items-center space-x-4">
+                <button id="favoriteBtn" class="hover:text-purple-400 transition">
+                    <span class="material-icons text-3xl">favorite</span>
+                </button>
+                <button id="themeToggle" class="hover:text-purple-400 transition">
+                    <span id="darkIcon" class="material-icons text-3xl">dark_mode</span>
+                    <span id="lightIcon" class="material-icons text-3xl hidden">light_mode</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <!-- SECTION HERO -->
+    <main class="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
+        <img src="image/hero.png" alt="hero"
+            class="absolute inset-0 w-full h-full object-cover brightness-75">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <button id="heroBtn"
+            class="relative z-10 bg-[#9E1999] text-white font-semibold px-6 py-3 rounded-full text-lg shadow-lg hover:bg-[#c73fc2] transition translate-y-52">
+            Find the newest games
+        </button>
+    </main>
+
+    <!-- SECTION CARTES -->
+    <section id="gamesSection" class="w-full py-16 px-8 bg-[#1b1440] text-white">
+        <h2 id="sectionTitle" class="text-4xl font-bold mb-8 text-center font-['Madimi_One'] text-[#D71CD0]">
+            Explore by Genre, Platform, or Rating
+        </h2>
+
+        <!-- Filtres -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <div class="flex flex-col">
+                <label for="filterGenre" class="text-sm text-gray-300 mb-1 text-center">Genre</label>
+                <select id="filterGenre"
+                    class="bg-[#9E199959] border-white border-2 px-4 py-2 rounded-md text-white outline-none w-48 h-12 cursor-pointer hover:bg-[#9E199980] transition"
+                    aria-label="Filter by genre">
+                    <option value="all">All Genres</option>
+                </select>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="filterPlatform" class="text-sm text-gray-300 mb-1 text-center">Platform</label>
+                <select id="filterPlatform"
+                    class="bg-[#9E199959] border-white border-2 px-4 py-2 rounded-md text-white outline-none w-48 h-12 cursor-pointer hover:bg-[#9E199980] transition"
+                    aria-label="Filter by platform">
+                    <option value="all">All Platforms</option>
+                </select>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="filterRating" class="text-sm text-gray-300 mb-1 text-center">Sort by Rating</label>
+                <select id="filterRating"
+                    class="bg-[#9E199959] border-2 border-white px-4 py-2 rounded-md text-white outline-none w-48 h-12 cursor-pointer hover:bg-[#9E199980] transition"
+                    aria-label="Sort by rating">
+                    <option value="all">All Ratings</option>
+                    <option value="asc">Low to High</option>
+                    <option value="desc">High to Low</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Loader -->
+        <div id="loader" class="flex justify-center items-center py-12">
+            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#D71CD0]"></div>
+        </div>
+
+        <!-- Message d'erreur -->
+        <div id="errorMessage" class="hidden text-center text-red-400 py-8">
+            <p>Impossible de charger les jeux. Veuillez réessayer plus tard.</p>
+        </div>
+
+        <!-- Zone des cartes -->
+        <div id="gameCards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="flex justify-center items-center gap-4 mt-12">
+            <button id="prevPage"
+                class="bg-[#9E1999] hover:bg-[#c73fc2] text-white px-4 py-2 rounded-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+                Previous
+            </button>
+            <span id="pageInfo" class="text-white">Page 1</span>
+            <button id="nextPage"
+                class="bg-[#9E1999] hover:bg-[#c73fc2] text-white px-4 py-2 rounded-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+                Next
+            </button>
+        </div>
+    </section>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
